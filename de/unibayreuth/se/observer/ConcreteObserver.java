@@ -2,16 +2,25 @@ package de.unibayreuth.se.observer;
 
 public class ConcreteObserver implements Observer {
 
+    private Subject subject;
+    private String name;
+    private static int counter = 1;
+    private int id;
+
     public ConcreteObserver(Subject subject) {
-        // TODO
+        this.subject = subject;
+        this.name = name;
+        this.id = counter++;
+        subject.attach(this);
     }
 
     @Override
     public void update(Subject subject) {
-        // TODO
+        int value = ((ConcreteSubject) subject).getValue();
+        System.out.println("Beobachter " + id + " erhielt Update vom subject ConcreteSubject : " + value);
     }
 
     public void detach() {
-        // TODO
+        subject.detach(this);
     }
 }
